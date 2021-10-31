@@ -9,6 +9,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsComponent } from '../../pages/products/products.component';
 import { HomeComponent } from '../../pages/home/home.component';
+import { AuthService } from 'src/app/services/auth.service';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { HomeComponent } from '../../pages/home/home.component';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule

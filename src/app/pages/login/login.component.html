@@ -1,77 +1,79 @@
-<div class="header bg-gradient-danger py-7 py-lg-8">
-  <div class="container">
-    <div class="header-body text-center mb-7">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h1 class="text-white">Welcome!</h1>
-          <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
-        </div>
+<div class="container h-100 py-6">
+  <div class="row w-100 m-0">
+    <div class="col-12">
+      <div class="d-flex align-items-center">
+        <img src="./../../../assets/img/bbLogo.png" class="img-fluid" width="28px" height="28px" alt="">
+        <h1 class="m-0 ml-2 text-white">BEDDING BAZZAR</h1>
       </div>
     </div>
   </div>
-  <div class="separator separator-bottom separator-skew zindex-100">
-    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-    </svg>
-  </div>
-</div>
-<!-- Page content -->
-<div class="container mt--8 pb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-          <div class="btn-wrapper text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-              <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-              <span class="btn-inner--text">Google</span>
-            </a>
-          </div>
-        </div>
-        <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
-          </div>
-          <form role="form">
-            <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                <input class="form-control" placeholder="Email" type="email">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input class="form-control" placeholder="Password" type="password">
-              </div>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox">
-              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-              <label class="custom-control-label" for=" customCheckLogin">
-                <span class="text-muted">Remember me</span>
-              </label>
-            </div>
-            <div class="text-center">
-              <button type="button" class="btn btn-primary my-4">Sign in</button>
-            </div>
-          </form>
-        </div>
+  <div class="row w-100 h-100 m-0">
+    <div class="col-12 col-sm-7">
+      <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+        <img src="./../../../assets/img/secure-login.svg" class="img-fluid" height="400px" width="400px" alt="">
       </div>
-      <div class="row mt-3">
-        <div class="col-6">
-          <a href="javascript:void(0)" class="text-light"><small>Forgot password?</small></a>
-        </div>
-        <div class="col-6 text-right">
-          <a href="javascript:void(0)" class="text-light"><small>Create new account</small></a>
+    </div>
+    <div class="col-12 col-sm-5">
+      <div class="d-flex flex-column justify-content-center" style="height: 100%;">
+        <div class="card shadow bg-secondary border-0">
+          <div class="card-header bg-transparent pb-2">
+            <h2 class="text-center m-0">Login</h2>
+          </div>
+          <div class="card-body p-lg-4">
+            <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm)" ngNativeValidate>
+              <div class="form-group m-0 mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Email" type="email" name="email" formControlName="email" required>
+                </div>
+                <div *ngIf="loginForm?.get('email').invalid && loginForm?.get('email').touched">
+                  <small class="text-sm text-danger mt-1" *ngIf="loginForm?.get('email').hasError('required')">Email is required.</small>
+                  <small class="text-sm text-danger mt-1" *ngIf="loginForm?.get('email').hasError('email')">Email is badly formatted.</small>
+                </div>
+              </div>
+              <div class="form-group m-0">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Password" type="password" name="password" formControlName="password" minlength="6">
+                </div>
+                <div *ngIf="loginForm?.get('password').invalid && loginForm?.get('password').touched">
+                  <small class="text-sm text-danger mt-1" *ngIf="loginForm?.get('password').hasError('required')">Password is required</small>
+                  <small class="text-sm text-danger mt-1" *ngIf="loginForm?.get('password').hasError('minlength')">Password must be at least 4 characters long</small>
+                  <small class="text-sm text-danger mt-1" *ngIf="loginForm?.get('password').hasError('maxlength')">Password must be 12 characters only</small>
+                </div>
+              </div>
+              <p class="text-sm text-muted text-right font-weight-bold m-0 mt-2">
+                <a class="m-0" style="cursor: pointer;">Forgot Password</a>
+              </p> 
+
+              <div *ngIf="errorMsg !== undefined" class="alert alert-danger text-center mt-4">
+                {{ errorMsg | titlecase }}
+              </div>
+  
+              <button type="submit" class="btn btn-primary {{ errorMsg !== undefined ? 'mt-4' : 'mt-7' }} col-12" [disabled]="loginForm.invalid || loader">
+                Login
+                <span *ngIf="loader">&nbsp;</span>
+                <div *ngIf="loader" class="spinner-border spinner-border-sm text-white" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
+              <p class="text-sm text-muted font-weight-bold m-0 mt-2">
+                Don't have account? 
+                <a class="m-0" routerLink="/register" [replaceUrl]="true" style="cursor: pointer;">Register</a>
+              </p>
+              <hr class="m-0 my-4">
+              <button type="button" class="btn btn-neutral btn-icon col-12" (click)="authService.googleLogin()">
+                <span class="btn-inner--icon">
+                  <img src="../assets/img/icons/common/google.svg">
+                </span>
+                <span class="btn-inner--text">Google</span>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

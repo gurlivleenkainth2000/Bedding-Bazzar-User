@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireFunctionsModule } from "@angular/fire/functions";
 import { environment } from 'src/environments/environment';
 import { ToastrModule } from "ngx-toastr";
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,10 @@ import { ToastrModule } from "ngx-toastr";
     AdminLayoutComponent,
     AuthLayoutComponent
   ],
-  providers: [],
+  providers: [
+    { provide: AuthService, useClass: AuthService }
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
